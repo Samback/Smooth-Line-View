@@ -12,7 +12,7 @@
 @implementation LinearBezierCurve
 
 +(LinearBezierCurve *)linearCurveWithStartPoint:(CGPoint)start endPoint:(CGPoint)end {
-	return [[[LinearBezierCurve alloc] initWithStartPoint:start endPoint:end] autorelease];
+	return [[LinearBezierCurve alloc] initWithStartPoint:start endPoint:end];
 }
 
 -(id)initWithStartPoint:(CGPoint)start endPoint:(CGPoint)end {
@@ -32,8 +32,6 @@
 	LinearBezierCurve *curve1 = [[LinearBezierCurve alloc] initWithStartPoint:p1 endPoint:mid];
 	LinearBezierCurve *curve2 = [[LinearBezierCurve alloc] initWithStartPoint:mid endPoint:p2];
 	NSArray *result = [NSArray arrayWithObjects:curve1, curve2, nil];
-	[curve1 release];
-	[curve2 release];
 	
 	return result;
 }

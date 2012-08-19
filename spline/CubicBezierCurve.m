@@ -13,10 +13,10 @@
 @implementation CubicBezierCurve
 
 +(CubicBezierCurve *)cubicCurveWithStart:(CGPoint)start controlPoint1:(CGPoint)control1 controlPoint2:(CGPoint)control2 end:(CGPoint)end {
-	return [[[CubicBezierCurve alloc] initWithStart:start
+	return [[CubicBezierCurve alloc] initWithStart:start
 									  controlPoint1:control1
 									  controlPoint2:control2 
-												end:end] autorelease];
+												end:end];
 }
 
 -(id)initWithStart:(CGPoint)start controlPoint1:(CGPoint)control1 controlPoint2:(CGPoint)control2 end:(CGPoint)end {
@@ -76,8 +76,6 @@
 								
 	NSArray *result = [NSArray arrayWithObjects:curve1, curve2, nil];
 	
-	[curve1 release];
-	[curve2 release];
 	
 	return result;
 }
@@ -93,11 +91,10 @@
 	} else {
 		NSArray *div = [self subdivided];
 		NSMutableArray *pointArray = [[NSMutableArray alloc] initWithArray:[[div objectAtIndex:0] asPointArray]];
-		[pointArray autorelease];
+
 		[pointArray removeLastObject];
 		[pointArray addObjectsFromArray:[[div objectAtIndex:1] asPointArray]];
-		
-		return pointArray;
+        return pointArray;
 	}
 	
 }
@@ -114,9 +111,5 @@
 }
 
 
--(void)dealloc {
-	//[pointArray release];
-	[super dealloc];
-}
 
 @end

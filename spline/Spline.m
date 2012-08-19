@@ -14,7 +14,7 @@
 @implementation Spline
 
 +(Spline *)splineAtPoint:(CGPoint)start {
-	return [[[Spline alloc] initAtPoint:start] autorelease];
+	return [[Spline alloc] initAtPoint:start];
 }
 
 -(id)initAtPoint:(CGPoint)start {
@@ -34,7 +34,6 @@
 																  end:end];
 	
 	[curves addObject:cubic];
-	[cubic release];
 	current = end;
 }
 
@@ -44,14 +43,12 @@
 																		 endPoint:end];
 	
 	[curves addObject:quad];
-	[quad release];
 	current = end;
 }
 
 -(void)addLinearCurveToPoint:(CGPoint)end {
 	LinearBezierCurve *linear = [[LinearBezierCurve alloc] initWithStartPoint:current endPoint:end];
 	[curves addObject:linear];
-	[linear release];
 	current = end;
 }
 
@@ -82,8 +79,4 @@
 	return pointArray;
 }
 
--(void)dealloc {
-	[curves release];
-	[super dealloc];
-}
 @end
